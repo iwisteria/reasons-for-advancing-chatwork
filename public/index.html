@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャットワークをおすすめする理由</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(52, 152, 219, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .benefit-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+            border-left-color: #e74c3c;
+        }
+
+        .benefit-card h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-card h3::before {
+            content: '✓';
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+            background: #d4edda;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .benefit-card p {
+            color: #555;
+            position: relative;
+            z-index: 1;
+        }
+
+        .notice-section {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #f39c12;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notice-section::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 3em;
+            opacity: 0.1;
+        }
+
+        .notice-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .notice-item:hover {
+            transform: translateX(5px);
+        }
+
+        .notice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-item h3 {
+            color: #d35400;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-item h3::before {
+            content: '!';
+            color: #e67e22;
+            background: #ffeaa7;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(45deg, #2980b9, #3498db);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>チャットワークをおすすめする理由</h1>
+            <div class="subtitle">スムーズなコミュニケーションのために</div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">チャットワークを使うメリット</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>業務効率の向上</h3>
+                        <p>メールよりもリアルタイムでスピーディなコミュニケーションが可能で、プロジェクトの進行が早くなります。</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>タスク管理機能</h3>
+                        <p>チャット内でタスクの作成・割り当て・進捗管理ができ、やるべきことが明確になります。</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>ファイル共有の簡便性</h3>
+                        <p>ドラッグ&ドロップで簡単にファイルを共有でき、バージョン管理も楽になります。</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>グループチャット機能</h3>
+                        <p>プロジェクトメンバー全員での情報共有や議論がスムーズに行えます。</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>検索機能</h3>
+                        <p>過去のやり取りやファイルを簡単に検索・参照できるため、情報の振り返りが容易です。</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <h3>通知機能</h3>
+                        <p>重要なメッセージを見逃すリスクが減り、レスポンスの向上につながります。</p>
+                    </div>
+
+                    <div class="benefit-card" style="grid-column: 1 / -1;">
+                        <h3>セキュリティ面</h3>
+                        <p>国産サービスで日本の法律に準拠しており、機密性の高い情報も安心して扱えます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">無料版をご利用の場合の注意点</h2>
+                <div class="notice-section">
+                    <div class="notice-item">
+                        <h3>広告表示</h3>
+                        <p>無料版では広告が表示されることがあります。</p>
+                    </div>
+
+                    <div class="notice-item">
+                        <h3>メッセージ閲覧制限</h3>
+                        <p>直近40日以内のメッセージのみ閲覧可能です。<br>
+                        <strong>※当事務所が有料版のため、必要があれば過去のメッセージもこちらから確認できますのでご安心ください</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="cta-button">チャットワークを始める</a>
+                <a href="#" class="cta-button" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">詳細情報を見る</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 チャットワーク利用案内 | ビジネスコミュニケーションの新しいカタチ</p>
+        </div>
+    </div>
+</body>
+</html>
